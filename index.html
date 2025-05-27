@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Engineering Club Signup</title>
+  <link rel="stylesheet" href="Task2.css" />
+</head>
+<body>
+
+  <h1>Engineering Club Signup</h1>
+  <form id="signupForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required />
+
+    <label for="branch">Branch:</label>
+    <select id="branch" required>
+      <option value="">Select Branch</option>
+      <option value="CSE">Computer Science</option>
+      <option value="ECE">Electronics and Communication</option>
+      <option value="EEE">Electrical and Electronics</option>
+      <option value="MECH">Mechanical</option>
+      <option value="CIVIL">Civil</option>
+      <option value="METALLURGY">Metallurgy</option>
+      <option value="IT">Information Technology</option>
+    </select>
+
+    <label for="year">Year:</label>
+    <select id="year" required>
+      <option value="">Select Year</option>
+      <option value="1">1st Year</option>
+      <option value="2">2nd Year</option>
+      <option value="3">3rd Year</option>
+      <option value="4">4th Year</option>
+    </select>
+
+    <button type="submit">Join Club</button>
+  </form>
+
+  <section id="activities"></section>
+
+  <section id="selectedEvents">
+    <h2>Selected Events</h2>
+    <ul id="eventList"></ul>
+  </section>
+
+  <script src="Task2.js"></script>
+</body>
+</html>
