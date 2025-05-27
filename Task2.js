@@ -28,9 +28,14 @@ function updateActivities(branch) {
 }
 
 function addEvent(eventName) {
-  const li = document.createElement('li');
-  li.innerHTML = `${eventName} <button onclick="removeEvent(this)">Remove</button>`;
-  eventList.appendChild(li);
+  const existing = Array.from(eventList.children).some(
+    li => li.textContent.includes(eventName)
+  );
+  if (!existing) {
+    const li = document.createElement('li');
+    li.innerHTML = `${eventName} <button onclick="removeEvent(this)">Remove</button>`;
+    eventList.appendChild(li);
+  }
 }
 
 function removeEvent(button) {
@@ -43,13 +48,28 @@ branchSelect.addEventListener('change', (e) => {
 
 document.getElementById('signupForm').addEventListener('submit', function (e) {
   e.preventDefault();
-  const email = document.getElementById('email').value;
+
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const branch = branchSelect.value;
+  const year = document.getElementById('year').value;
+  const selectedEvents = eventList.getElementsByTagName('li');
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!emailRegex.test(email)) {
-    alert('Please enter a valid email address.');
+  if (!name || !email || !branch || !year) {
+    alert("Please fill in all fields.");
     return;
   }
 
-  alert('Successfully registered! Scroll down to manage your events.');
+  if (!emailRegex.test(email)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  if (selectedEvents.length === 0) {
+    alert("Please select at least one event before joining the club.");
+    return;
+  }
+
+  alert("Successfully registered! Scroll down to manage your events.");
 });
